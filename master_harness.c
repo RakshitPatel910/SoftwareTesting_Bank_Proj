@@ -1,6 +1,3 @@
-// master_harness.c
-// LOCATION: ~/Bank_Project/master_harness.c
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -11,7 +8,7 @@
 #include <time.h>
 #include <stdbool.h>
 
-// --- 1. MOCK NETWORK FUNCTIONS ---
+// MOCK NETWORK FUNCTIONS
 ssize_t mock_recv(int sockfd, void *buf, size_t len, int flags) {
     char *c_buf = (char*)buf;
     size_t count = 0;
@@ -20,27 +17,26 @@ ssize_t mock_recv(int sockfd, void *buf, size_t len, int flags) {
     // Read byte-by-byte until we hit Newline or EOF
     while (count < len - 1) {
         ssize_t r = read(0, &c, 1);
-        if (r <= 0) break; // End of input
+        if (r <= 0) break;
         
         c_buf[count++] = c;
-        if (c == '\n') break; // Found the Enter key!
+        if (c == '\n') break;
     }
 
-    c_buf[count] = '\0'; // Null terminate
+    c_buf[count] = '\0';
     
-    if (count == 0) exit(0); // Stop cleanly if no data left
+    if (count == 0) exit(0);
     return count;
 }
 
 ssize_t mock_send(int sockfd, const void *buf, size_t len, int flags) {
-    // Write to stdout (so we can debug if needed)
+    // Write to stdout (mainly for debugging if needed)
     return write(1, buf, len); 
 }
 
 #define recv mock_recv
 #define send mock_send
 
-// --- 2. INCLUDE HEADERS ---
 #include "structures/users.h"
 #include "structures/loan.h"
 #include "structures/transaction.h"
@@ -52,9 +48,8 @@ ssize_t mock_send(int sockfd, const void *buf, size_t len, int flags) {
 #include "headers/employee.h"
 #include "headers/manager.h"
 
-// --- 3. DATABASE SETUP ---
+// DATABASE SETUP
 void setup_dummy_db() {
-    // Create folders
     system("mkdir -p dataBaseFiles/admin dataBaseFiles/customer dataBaseFiles/employee dataBaseFiles/loan dataBaseFiles/feedback dataBaseFiles/transaction");
 
     // --- 1. CREATE TRANSACTION HISTORY (Types 1, 2, 3, 4, 5) ---
@@ -77,7 +72,6 @@ void setup_dummy_db() {
     // ID 5: Loan Rec
     t[4].tID = 5; t[4].custID = 0; t[4].amount = 5000.0; t[4].transactionType = 5; t[4].transactionTime = time(NULL);
 
-    // Write them all to file sequentially
     for(int i=0; i<5; i++) {
         write(fd_trans, &t[i], sizeof(struct Transaction));
     }
@@ -89,15 +83,13 @@ void setup_dummy_db() {
     struct Customer c1;
     memset(&c1, 0, sizeof(c1));
     
-    // Core details
     c1.acc_no = 0; 
     c1.balance = 10000.0; 
     c1.active = true; 
-    c1.loanID = -1; // Explicitly no loan
+    c1.loanID = -1;
     strcpy(c1.password, "pass"); 
     strcpy(c1.name, "Tester");
     
-    // LINKING THE TRANSACTIONS
     c1.tp = 4; 
     c1.transaction[0] = 1; 
     c1.transaction[1] = 2; 
@@ -106,7 +98,7 @@ void setup_dummy_db() {
     c1.transaction[4] = 5; 
     for(int i=5; i<10; i++) c1.transaction[i] = -1;
 
-    // Create Friend User (ID 1)
+    // Friend User (ID 1)
     struct Customer c2;
     memset(&c2, 0, sizeof(c2));
     c2.acc_no = 1; c2.balance = 500.0; c2.active = true; c2.loanID = -1;
@@ -117,7 +109,6 @@ void setup_dummy_db() {
     close(fd);
 
     // --- 3. EMPLOYEE SETUP (UPDATED) ---
-    // We create TWO employees to cover different Roles.
     int fd_emp = open("./dataBaseFiles/employee/employee.txt", O_RDWR | O_CREAT | O_TRUNC, 0666);
     
     // Employee 0: Regular Employee (Role 0)
@@ -129,7 +120,7 @@ void setup_dummy_db() {
     e1.loanAssigned[0] = 0;
     strcpy(e1.username, "emp"); strcpy(e1.password, "pass"); strcpy(e1.name, "Worker");
     
-    // Employee 1: Manager (Role 1) --> NEEDED FOR COVERAGE
+    // Employee 1: Manager (Role 1)
     struct Employee e2;
     memset(&e2, 0, sizeof(e2));
     e2.id = 1; e2.role = 1; e2.age = 40; e2.gender = 'F';
@@ -141,56 +132,52 @@ void setup_dummy_db() {
     write(fd_emp, &e2, sizeof(e2));
     close(fd_emp);
 
-    // --- 4. TOTAL EMP (Must match count) ---
+    // --- 4. TOTAL EMP ---
     int fd_total = open("./dataBaseFiles/employee/totalEmp.txt", O_RDWR | O_CREAT | O_TRUNC, 0666);
-    int count = 2; // We now have 2 employees
+    int count = 2;
     write(fd_total, &count, sizeof(count));
     close(fd_total);
 
-    // --- 5. OTHER FILES ---
+    // --- 5. LOAN ---
     int fd_loan = open("./dataBaseFiles/loan/loanList.txt", O_RDWR | O_CREAT | O_TRUNC, 0666);
     struct Loan l;
     memset(&l, 0, sizeof(l));
     l.loanId = 0; 
     l.custId = 0; 
     l.amount = 1000.0; 
-    l.loanStatus = 0; // 0 = Pending (Manager can assign this)
+    l.loanStatus = 0; // 0 = Pending 
     l.empId = -1;     // -1 = Unassigned
     write(fd_loan, &l, sizeof(l));
     close(fd_loan);
 
-    // --- 6. CREATE PENDING FEEDBACK (Crucial for Manager Coverage) ---
+    // --- 6. FEEDBACK ---
     int fd_feed = open("./dataBaseFiles/feedback/feedback.txt", O_RDWR | O_CREAT | O_TRUNC, 0666);
     struct Feedback f;
     memset(&f, 0, sizeof(f));
     f.feedbackId = 0;
     f.custId = 0;
-    f.reviewStatus = 0; // 0 = Not Reviewed (Manager can review this)
+    f.reviewStatus = 0; // 0 = Not Reviewed
     strcpy(f.feedback, "Great Service!");
     write(fd_feed, &f, sizeof(f));
     close(fd_feed);
     
 }
 
-// --- 4. MAIN LOOP ---
+
 int main() {
     setup_dummy_db();
 
-    // 1. Read Selector Byte
     char selector;
     if (read(0, &selector, 1) <= 0) return 0;
 
-    // 2. Eat the newline!
     char dummy;
     read(0, &dummy, 1); 
 
-    // 3. Define users
     struct User adminUser = {0, 1, "admin", "pass"};
     struct User empUser   = {0, 2, "emp", "pass"};
     struct User mgrUser   = {0, 3, "mgr", "pass"};
     struct User custUser  = {0, 4, "cust", "pass"};
 
-    // 4. Route
     switch(selector % 4) {
         case 0: handle_customer(0, &custUser, 0); break;
         case 1: handle_admin(0, &adminUser); break;
