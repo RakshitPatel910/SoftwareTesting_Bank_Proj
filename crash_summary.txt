@@ -1,0 +1,185 @@
+--- CRASH ANALYSIS REPORT ---
+------------------------------------------------
+Analyzing: id:000000,sig:11,src:000420+000562,time:70727,execs:71455,op:splice,rep:5
+------------------------------------------------
+Analyzing: id:000001,sig:11,src:000420+000562,time:70805,execs:71536,op:splice,rep:1
+------------------------------------------------
+Analyzing: id:000002,sig:11,src:000420+000562,time:70830,execs:71562,op:splice,rep:5
+------------------------------------------------
+Analyzing: id:000003,sig:11,src:000420+000562,time:70849,execs:71581,op:splice,rep:2
+------------------------------------------------
+Analyzing: id:000004,sig:11,src:000420+000562,time:71164,execs:71904,op:splice,rep:7
+------------------------------------------------
+Analyzing: id:000005,sig:11,src:000420+000562,time:71229,execs:71970,op:splice,rep:6
+------------------------------------------------
+Analyzing: id:000006,sig:11,src:000420+000562,time:71488,execs:72231,op:splice,rep:7
+------------------------------------------------
+Analyzing: id:000007,sig:11,src:000420+000562,time:71591,execs:72338,op:splice,rep:7
+------------------------------------------------
+Analyzing: id:000008,sig:11,src:000607,time:89420,execs:91076,op:havoc,rep:4
+------------------------------------------------
+Analyzing: id:000009,sig:11,src:000607,time:91414,execs:93162,op:havoc,rep:9
+------------------------------------------------
+Analyzing: id:000010,sig:11,src:000607,time:92854,execs:94667,op:havoc,rep:4
+------------------------------------------------
+Analyzing: id:000011,sig:11,src:000633,time:100169,execs:101068,op:havoc,rep:14
+------------------------------------------------
+Analyzing: id:000012,sig:11,src:000633,time:100970,execs:101890,op:havoc,rep:2
+------------------------------------------------
+Analyzing: id:000013,sig:11,src:000633,time:100989,execs:101910,op:havoc,rep:8
+------------------------------------------------
+Analyzing: id:000014,sig:11,src:000633,time:101387,execs:102321,op:havoc,rep:11
+------------------------------------------------
+Analyzing: id:000015,sig:11,src:000654,time:133532,execs:134145,op:havoc,rep:2
+------------------------------------------------
+Analyzing: id:000016,sig:11,src:000635,time:140292,execs:140840,op:havoc,rep:2
+------------------------------------------------
+Analyzing: id:000017,sig:11,src:000245+000674,time:141378,execs:141975,op:splice,rep:1
+------------------------------------------------
+Analyzing: id:000018,sig:11,src:000652,time:142617,execs:143275,op:havoc,rep:12
+------------------------------------------------
+Analyzing: id:000019,sig:11,src:000166+000702,time:158184,execs:159482,op:splice,rep:11
+------------------------------------------------
+Analyzing: id:000020,sig:11,src:000717,time:180189,execs:180771,op:havoc,rep:6
+------------------------------------------------
+Analyzing: id:000021,sig:11,src:000717,time:181650,execs:182258,op:havoc,rep:4
+------------------------------------------------
+Analyzing: id:000022,sig:11,src:000689,time:213513,execs:212918,op:havoc,rep:1
+------------------------------------------------
+Analyzing: id:000023,sig:11,src:000689,time:220085,execs:219129,op:havoc,rep:7
+------------------------------------------------
+Analyzing: id:000024,sig:11,src:000772,time:227970,execs:226153,op:havoc,rep:1
+------------------------------------------------
+Analyzing: id:000025,sig:11,src:000772,time:229585,execs:227674,op:havoc,rep:5
+------------------------------------------------
+Analyzing: id:000026,sig:11,src:000513,time:261090,execs:258408,op:havoc,rep:2
+------------------------------------------------
+Analyzing: id:000027,sig:11,src:000779+000816,time:395094,execs:392573,op:splice,rep:2
+------------------------------------------------
+Analyzing: id:000028,sig:11,src:000747,time:877947,execs:879372,op:havoc,rep:6
+------------------------------------------------
+Analyzing: id:000029,sig:11,src:000636+000936,time:1030607,execs:1034275,op:splice,rep:6
+------------------------------------------------
+Analyzing: id:000030,sig:11,src:000987,time:1471622,execs:1455775,op:havoc,rep:4
+==714==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7a6e898010a0 at pc 0x7a6e8b6a7923 bp 0x7ffd010a1a70 sp 0x7ffd010a1218
+    #0 0x7a6e8b6a7922 in strcpy ../../../../src/libsanitizer/asan/asan_interceptors.cpp:563
+    #1 0x5edb74c71916 in addFeedback headers/customer.h:398
+    #0 0x5edb74c71651 in addFeedback headers/customer.h:380
+------------------------------------------------
+Analyzing: id:000031,sig:11,src:000987,time:1471725,execs:1455872,op:havoc,rep:13
+------------------------------------------------
+Analyzing: id:000032,sig:11,src:000987,time:1471881,execs:1456018,op:havoc,rep:10
+==724==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x73d4c90010a0 at pc 0x73d4caea7923 bp 0x7fff3301be30 sp 0x7fff3301b5d8
+    #0 0x73d4caea7922 in strcpy ../../../../src/libsanitizer/asan/asan_interceptors.cpp:563
+    #1 0x564ab4829916 in addFeedback headers/customer.h:398
+    #0 0x564ab4829651 in addFeedback headers/customer.h:380
+------------------------------------------------
+Analyzing: id:000033,sig:11,src:000987,time:1471948,execs:1456081,op:havoc,rep:10
+==729==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x78ff524010a0 at pc 0x78ff542a7923 bp 0x7ffd04fc0670 sp 0x7ffd04fbfe18
+    #0 0x78ff542a7922 in strcpy ../../../../src/libsanitizer/asan/asan_interceptors.cpp:563
+    #1 0x5b37cd0c0916 in addFeedback headers/customer.h:398
+    #0 0x5b37cd0c0651 in addFeedback headers/customer.h:380
+------------------------------------------------
+Analyzing: id:000034,sig:11,src:000987,time:1471949,execs:1456082,op:havoc,rep:8
+==734==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x76db442010a0 at pc 0x76db460a7923 bp 0x7ffe7f3133b0 sp 0x7ffe7f312b58
+    #0 0x76db460a7922 in strcpy ../../../../src/libsanitizer/asan/asan_interceptors.cpp:563
+    #1 0x59c09cd04916 in addFeedback headers/customer.h:398
+    #0 0x59c09cd04651 in addFeedback headers/customer.h:380
+------------------------------------------------
+Analyzing: id:000035,sig:11,src:000987,time:1472182,execs:1456280,op:havoc,rep:14
+==739==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7bff95e010a0 at pc 0x7bff97ca7923 bp 0x7ffcd8806e10 sp 0x7ffcd88065b8
+    #0 0x7bff97ca7922 in strcpy ../../../../src/libsanitizer/asan/asan_interceptors.cpp:563
+    #1 0x571c428bd916 in addFeedback headers/customer.h:398
+    #0 0x571c428bd651 in addFeedback headers/customer.h:380
+------------------------------------------------
+Analyzing: id:000036,sig:11,src:000987,time:1472312,execs:1456393,op:havoc,rep:3
+==744==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7fcb8f2010a0 at pc 0x7fcb910a7923 bp 0x7ffe5317e1e0 sp 0x7ffe5317d988
+    #0 0x7fcb910a7922 in strcpy ../../../../src/libsanitizer/asan/asan_interceptors.cpp:563
+    #1 0x5c34ad596916 in addFeedback headers/customer.h:398
+    #0 0x5c34ad596651 in addFeedback headers/customer.h:380
+------------------------------------------------
+Analyzing: id:000037,sig:11,src:000987,time:1472357,execs:1456435,op:havoc,rep:4
+==749==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7016912010a0 at pc 0x7016930a7923 bp 0x7ffd9c614420 sp 0x7ffd9c613bc8
+    #0 0x7016930a7922 in strcpy ../../../../src/libsanitizer/asan/asan_interceptors.cpp:563
+    #1 0x5a6deae86916 in addFeedback headers/customer.h:398
+    #0 0x5a6deae86651 in addFeedback headers/customer.h:380
+------------------------------------------------
+Analyzing: id:000038,sig:11,src:000987,time:1472459,execs:1456530,op:havoc,rep:8
+==754==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x73c97a6010a0 at pc 0x73c97c4a7923 bp 0x7ffd68583b10 sp 0x7ffd685832b8
+    #0 0x73c97c4a7922 in strcpy ../../../../src/libsanitizer/asan/asan_interceptors.cpp:563
+    #1 0x60d0fc37c916 in addFeedback headers/customer.h:398
+    #0 0x60d0fc37c651 in addFeedback headers/customer.h:380
+------------------------------------------------
+Analyzing: id:000039,sig:11,src:000987,time:1472517,execs:1456581,op:havoc,rep:3
+==759==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7bb6b90010a0 at pc 0x7bb6baea7923 bp 0x7ffde9d20070 sp 0x7ffde9d1f818
+    #0 0x7bb6baea7922 in strcpy ../../../../src/libsanitizer/asan/asan_interceptors.cpp:563
+    #1 0x6109e22ad916 in addFeedback headers/customer.h:398
+    #0 0x6109e22ad651 in addFeedback headers/customer.h:380
+------------------------------------------------
+Analyzing: id:000040,sig:11,src:000987,time:1473910,execs:1457880,op:havoc,rep:14
+==764==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7d5853c010a0 at pc 0x7d5855aa7923 bp 0x7ffc2b827cf0 sp 0x7ffc2b827498
+    #0 0x7d5855aa7922 in strcpy ../../../../src/libsanitizer/asan/asan_interceptors.cpp:563
+    #1 0x5b6fb07e2916 in addFeedback headers/customer.h:398
+    #0 0x5b6fb07e2651 in addFeedback headers/customer.h:380
+------------------------------------------------
+Analyzing: id:000041,sig:11,src:000987,time:1474069,execs:1458030,op:havoc,rep:10
+==769==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x737fd4a010a0 at pc 0x737fd68a7923 bp 0x7ffe59143510 sp 0x7ffe59142cb8
+    #0 0x737fd68a7922 in strcpy ../../../../src/libsanitizer/asan/asan_interceptors.cpp:563
+    #1 0x5c6a23b42916 in addFeedback headers/customer.h:398
+    #0 0x5c6a23b42651 in addFeedback headers/customer.h:380
+------------------------------------------------
+Analyzing: id:000042,sig:11,src:000987,time:1474317,execs:1458262,op:havoc,rep:12
+==774==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x72ef586010a0 at pc 0x72ef5a4a7923 bp 0x7fff4eea56d0 sp 0x7fff4eea4e78
+    #0 0x72ef5a4a7922 in strcpy ../../../../src/libsanitizer/asan/asan_interceptors.cpp:563
+    #1 0x5b5acf57b916 in addFeedback headers/customer.h:398
+    #0 0x5b5acf57b651 in addFeedback headers/customer.h:380
+------------------------------------------------
+Analyzing: id:000043,sig:11,src:000987,time:1479025,execs:1462576,op:havoc,rep:15
+==779==ERROR: AddressSanitizer: strcpy-param-overlap: memory ranges [0x7d9aa360103c,0x7d9aa360111d) and [0x7d9aa36010c0, 0x7d9aa36011a1) overlap
+    #0 0x7d9aa54a799c in strcpy ../../../../src/libsanitizer/asan/asan_interceptors.cpp:561
+    #1 0x5d21a202c916 in addFeedback headers/customer.h:398
+    #0 0x5d21a202c651 in addFeedback headers/customer.h:380
+    #0 0x5d21a202c651 in addFeedback headers/customer.h:380
+------------------------------------------------
+Analyzing: id:000044,sig:11,src:000987,time:1480641,execs:1464104,op:havoc,rep:8
+==784==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7f17fa2010a0 at pc 0x7f17fc0a7923 bp 0x7ffe66cee900 sp 0x7ffe66cee0a8
+    #0 0x7f17fc0a7922 in strcpy ../../../../src/libsanitizer/asan/asan_interceptors.cpp:563
+    #1 0x604d9709a916 in addFeedback headers/customer.h:398
+    #0 0x604d9709a651 in addFeedback headers/customer.h:380
+------------------------------------------------
+Analyzing: id:000045,sig:11,src:000987,time:1481156,execs:1464589,op:havoc,rep:13
+==789==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7375e72010a0 at pc 0x7375e90a7923 bp 0x7ffd9ae333c0 sp 0x7ffd9ae32b68
+    #0 0x7375e90a7922 in strcpy ../../../../src/libsanitizer/asan/asan_interceptors.cpp:563
+    #1 0x567ee919c916 in addFeedback headers/customer.h:398
+    #0 0x567ee919c651 in addFeedback headers/customer.h:380
+------------------------------------------------
+Analyzing: id:000046,sig:11,src:000262+000974,time:1587174,execs:1531169,op:splice,rep:8
+==794==ERROR: AddressSanitizer: strcpy-param-overlap: memory ranges [0x7ea253e0103f,0x7ea253e01427) and [0x7ea253e01100, 0x7ea253e014e8) overlap
+    #0 0x7ea255ca799c in strcpy ../../../../src/libsanitizer/asan/asan_interceptors.cpp:561
+    #1 0x5b75ba51492d in changePasswordCustomer headers/customer.h:522
+    #0 0x5b75ba5146fb in changePasswordCustomer headers/customer.h:502
+    #0 0x5b75ba5146fb in changePasswordCustomer headers/customer.h:502
+------------------------------------------------
+Analyzing: id:000047,sig:11,src:000965,time:1592191,execs:1535738,op:havoc,rep:2
+------------------------------------------------
+Analyzing: id:000048,sig:11,src:000965,time:1595967,execs:1538242,op:havoc,rep:2
+------------------------------------------------
+Analyzing: id:000049,sig:11,src:001074,time:1718057,execs:1647489,op:havoc,rep:3
+==810==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x72df6a4010a0 at pc 0x72df6c2a7923 bp 0x7ffffbf3a8c0 sp 0x7ffffbf3a068
+    #0 0x72df6c2a7922 in strcpy ../../../../src/libsanitizer/asan/asan_interceptors.cpp:563
+    #1 0x59ef5deee916 in addFeedback headers/customer.h:398
+    #0 0x59ef5deee651 in addFeedback headers/customer.h:380
+------------------------------------------------
+Analyzing: id:000050,sig:11,src:000715+001068,time:1861693,execs:1779832,op:splice,rep:6
+------------------------------------------------
+Analyzing: id:000051,sig:11,src:000139+001072,time:1893278,execs:1809642,op:splice,rep:7
+------------------------------------------------
+Analyzing: id:000052,sig:11,src:000501+001068,time:1968652,execs:1880748,op:splice,rep:3
+------------------------------------------------
+Analyzing: id:000053,sig:11,src:000941+000765,time:1985641,execs:1897532,op:splice,rep:8
+------------------------------------------------
+Analyzing: id:000054,sig:11,src:000650,time:2142530,execs:2041107,op:havoc,rep:12
+------------------------------------------------
+Analyzing: id:000055,sig:11,src:000930,time:2614292,execs:2482760,op:havoc,rep:2
+------------------------------------------------
+Analyzing: id:000056,sig:11,src:001069,time:2676208,execs:2540824,op:havoc,rep:8

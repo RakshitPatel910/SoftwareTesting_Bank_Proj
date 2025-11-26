@@ -1,0 +1,11 @@
+2
+1
+newcust
+-20
+20
+X
+F
+newcustuname
+pass
+
+5
